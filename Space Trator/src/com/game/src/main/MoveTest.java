@@ -1,5 +1,4 @@
 package com.game.src.main;
-
 import javax.swing.JFrame;
 
 public class MoveTest {
