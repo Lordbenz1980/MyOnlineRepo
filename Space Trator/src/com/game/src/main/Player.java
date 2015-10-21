@@ -1,6 +1,10 @@
 package com.game.src.main;
 
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 public class Player {
 	private Rectangle bounding;
@@ -8,10 +12,18 @@ public class Player {
 	private float f_posy;
 	private int worldsize_x;
 	private int worldsize_y;
+	private BufferedImage look;
 	
 	
-	public Player(int x, int y, int size, int worldsize_x,int worldsize_y){
-		bounding = new Rectangle(x, y, size, size);
+	public Player(int x, int y,int worldsize_x,int worldsize_y){
+		
+		try {
+			look = ImageIO.read(getClass().getClassLoader().getResourceAsStream("gfx/ship.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		bounding = new Rectangle(x, y, look.getWidth(), look.getHeight());
 		f_posx = x;
 		f_posy = y;
 		this.worldsize_x = worldsize_x;
@@ -26,12 +38,12 @@ public class Player {
 	 * @param right Playwe goes right
 	 */
 	
-	public void update(boolean up, boolean down, boolean left, boolean right){
+	public void update(float timeSinceLastFrame,boolean up, boolean down, boolean left, boolean right){
 		//Abfrage Player Keyboardtasten und setze geschwindigkeit
-		if(up)f_posy-=5;
-		if(down)f_posy+=5;
-		if(right)f_posx+=5;
-		if(left)f_posx-=5;
+		if(up)f_posy-=600*timeSinceLastFrame;
+		if(down)f_posy+=600*timeSinceLastFrame;
+		if(right)f_posx+=600*timeSinceLastFrame;
+		if(left)f_posx-=600*timeSinceLastFrame;
 		
 		//Abfrage Player Bildschirmrand
 		if(f_posx<0)f_posx=0;
@@ -51,6 +63,10 @@ public class Player {
 	 */
 	public Rectangle getBounding(){
 		return bounding;
+	}
+	
+	public BufferedImage getLook(){
+		return look;
 	}
 }
 

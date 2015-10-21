@@ -21,7 +21,7 @@ public class Frame extends JFrame{
 	public Frame(Player player){
 		super("MoveTest");
 		screen = new Screen();
-		screen.setBounds(0, 0, 800, 600);
+		screen.setBounds(0, 0, 1920, 1080);
 		add(screen);
 		addKeyListener(new KeyHandler());
 		this.player = player;
@@ -55,7 +55,10 @@ public class Frame extends JFrame{
 		protected void paintComponent(Graphics g) {
 			super.paintComponent(g);
 			g.setColor(Color.RED);
-			g.fillRect(player.getBounding().x,player.getBounding().y,player.getBounding().width,player.getBounding().height);
+			g.drawImage(player.getLook(),
+						player.getBounding().x,
+						player.getBounding().y,
+						null);
 		}
 	}
 	/**
