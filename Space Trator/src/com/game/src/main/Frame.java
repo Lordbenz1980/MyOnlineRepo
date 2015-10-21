@@ -12,22 +12,27 @@ public class Frame extends JFrame{
 	private Screen screen;
 	
 	final Player player;
+	final Background bg;
 
 	private boolean key_up = false;
 	private boolean key_down = false;
 	private boolean key_left = false;
 	private boolean key_right = false;
 	
+	
+	
 	final public static int window_width = 1280;
 	final public static int window_height = 1024;
 	
-	public Frame(Player player){
+	
+	public Frame(Player player,Background bg){
 		super("MoveTest");
 		screen = new Screen();
 		screen.setBounds(0, 0, window_width, window_height);
 		add(screen);
 		addKeyListener(new KeyHandler());
 		this.player = player;
+		this.bg =  bg;
 	}
 	
 	
@@ -58,6 +63,17 @@ public class Frame extends JFrame{
 		protected void paintComponent(Graphics g) {
 			super.paintComponent(g);
 			g.setColor(Color.RED);
+			
+			
+			//Background zeichnen
+			g.drawImage(bg.getLook(),
+						bg.getX(),
+						0, null);
+			g.drawImage(bg.getLook(),
+						bg.getX()+bg.getLook().getWidth(),
+						0, null);
+			
+			
 			g.drawImage(player.getLook(),
 						player.getBounding().x,
 						player.getBounding().y,
