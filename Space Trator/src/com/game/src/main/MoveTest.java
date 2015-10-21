@@ -12,6 +12,8 @@ public class MoveTest {
 		f.setVisible(true);
 		f.setResizable(false);
 		
+		f.makeStrat();
+		
 		//Frameberechnung
 		long lastFrame = System.currentTimeMillis();
 		
@@ -20,10 +22,14 @@ public class MoveTest {
 			long thisFrame = System.currentTimeMillis();
 			float timeSinceLastFrame = ((float)(thisFrame-lastFrame))/1000f;
 			lastFrame=thisFrame;
+			
+			//Update der Objekte
 			player.update(timeSinceLastFrame,f.getUp(),f.getDown(),f.getLeft() ,f.getRight());
 			bg.update(timeSinceLastFrame);
 			
+			//Frame repaint
 			f.repaintScreen();
+			
 			try {
 				Thread.sleep(15);
 			} catch (InterruptedException e) {

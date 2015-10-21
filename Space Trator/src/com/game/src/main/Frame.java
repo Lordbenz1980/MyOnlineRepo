@@ -4,12 +4,13 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferStrategy;
 
+import javax.swing.GrayFilter;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class Frame extends JFrame{
-	private Screen screen;
 	
 	final Player player;
 	final Background bg;
@@ -24,15 +25,20 @@ public class Frame extends JFrame{
 	final public static int window_width = 1280;
 	final public static int window_height = 1024;
 	
+	private BufferStrategy strat;
+	
 	
 	public Frame(Player player,Background bg){
 		super("MoveTest");
-		screen = new Screen();
-		screen.setBounds(0, 0, window_width, window_height);
-		add(screen);
 		addKeyListener(new KeyHandler());
 		this.player = player;
 		this.bg =  bg;
+			
+	}
+	
+	public void makeStrat(){
+		createBufferStrategy(2);
+		strat= getBufferStrategy();
 	}
 	
 	
@@ -54,32 +60,27 @@ public class Frame extends JFrame{
 	 * Zeichnet den Sreeen Neu
 	 */
 	public void repaintScreen(){
-		screen.repaint();
+		Graphics g = strat.getDrawGraphics();
+		draw (g);
+		g.dispose();
+		strat.show();
 	}
 	
+	private void draw(Graphics g){
+		g.drawImage(bg.getLook(),
+				bg.getX(),
+				0, null);
+	g.drawImage(bg.getLook(),
+				bg.getX()+bg.getLook().getWidth(),
+				0, null);
 	
-	private class Screen extends JLabel{
-		@Override
-		protected void paintComponent(Graphics g) {
-			super.paintComponent(g);
-			g.setColor(Color.RED);
-			
-			
-			//Background zeichnen
-			g.drawImage(bg.getLook(),
-						bg.getX(),
-						0, null);
-			g.drawImage(bg.getLook(),
-						bg.getX()+bg.getLook().getWidth(),
-						0, null);
-			
-			
-			g.drawImage(player.getLook(),
-						player.getBounding().x,
-						player.getBounding().y,
-						null);
-		}
+	//Player zeichnen
+	g.drawImage(player.getLook(),
+				player.getBounding().x,
+				player.getBounding().y,
+				null);
 	}
+		
 	/**
 	 * Ist für die Keyboardabfrage zuständig
 	 * @author Lordbenz
@@ -103,11 +104,6 @@ public class Frame extends JFrame{
 			if(e.getKeyCode() == KeyEvent.VK_A)key_left = false;
 		}
 
-		
-		
-		
-		
-		
 		//Unnötig
 		@Override
 		public void keyTyped(KeyEvent arg0) {}
