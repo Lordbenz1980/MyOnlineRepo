@@ -4,7 +4,7 @@ import javax.swing.JFrame;
 public class MoveTest {
 	public static void main(String[] args) {
 		Player player = new Player(300,300,Frame.window_width,Frame.window_height);
-		Background bg = new Background(2 00);
+		Background bg = new Background(200);
 		
 		Frame f = new Frame(player,bg);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
