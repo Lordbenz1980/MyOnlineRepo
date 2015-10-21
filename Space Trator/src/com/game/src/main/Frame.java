@@ -18,10 +18,13 @@ public class Frame extends JFrame{
 	private boolean key_left = false;
 	private boolean key_right = false;
 	
+	final public static int window_width = 1280;
+	final public static int window_height = 1024;
+	
 	public Frame(Player player){
 		super("MoveTest");
 		screen = new Screen();
-		screen.setBounds(0, 0, 1920, 1080);
+		screen.setBounds(0, 0, window_width, window_height);
 		add(screen);
 		addKeyListener(new KeyHandler());
 		this.player = player;
@@ -94,4 +97,5 @@ public class Frame extends JFrame{
 		public void keyTyped(KeyEvent arg0) {}
 		
 	}
+	
 }
