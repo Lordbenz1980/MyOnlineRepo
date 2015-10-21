@@ -11,21 +11,20 @@ import javax.swing.JLabel;
 public class Frame extends JFrame{
 	private Screen screen;
 	
-	float player_posx = 300;
-	float player_posy = 300;
-	private int player_size = 50;
-	
+	final Player player;
+
 	private boolean key_up = false;
 	private boolean key_down = false;
 	private boolean key_left = false;
 	private boolean key_right = false;
 	
-	public Frame(){
+	public Frame(Player player){
 		super("MoveTest");
 		screen = new Screen();
 		screen.setBounds(0, 0, 800, 600);
 		add(screen);
 		addKeyListener(new KeyHandler());
+		this.player = player;
 	}
 	
 	
@@ -43,7 +42,9 @@ public class Frame extends JFrame{
 	}
 	
 	
-	
+	/**
+	 * Zeichnet den Sreeen Neu
+	 */
 	public void repaintScreen(){
 		screen.repaint();
 	}
@@ -54,10 +55,14 @@ public class Frame extends JFrame{
 		protected void paintComponent(Graphics g) {
 			super.paintComponent(g);
 			g.setColor(Color.RED);
-			g.fillRect((int)player_posx, (int)player_posy, player_size, player_size);
+			g.fillRect(player.getBounding().x,player.getBounding().y,player.getBounding().width,player.getBounding().height);
 		}
 	}
-	
+	/**
+	 * Ist für die Keyboardabfrage zuständig
+	 * @author Lordbenz
+	 *
+	 */
 	private class KeyHandler implements KeyListener{
 
 		@Override
