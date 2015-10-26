@@ -5,8 +5,9 @@ import javax.swing.JFrame;
 
 public class MoveTest {
 	public static void main(String[] args) {
-		PlayerOne playerOne = new PlayerOne(300,300,Frame.window_width,Frame.window_height);
-		PlayerTwo playerTwo = new PlayerTwo(300,300,Frame.window_width,Frame.window_height);
+		PlayerOne playerOne = new PlayerOne(300,300,Frame.window_width,Frame.window_height,600);
+		PlayerTwo playerTwo = new PlayerTwo(300,300,Frame.window_width,Frame.window_height,300);
+		
 		Background bg = new Background(200);
 		
 		Frame f = new Frame(playerOne,playerTwo,bg);
@@ -19,6 +20,8 @@ public class MoveTest {
 		
 		//Frameberechnung
 		long lastFrame = System.currentTimeMillis();
+		
+		
 		
 		while(true){
 			if(Keyboard.isKeyDown(KeyEvent.VK_ESCAPE)){System.exit(0);}

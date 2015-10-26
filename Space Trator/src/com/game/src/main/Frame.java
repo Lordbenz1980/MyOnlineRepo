@@ -49,12 +49,12 @@ public class Frame extends JFrame{
 				bg.getX()+bg.getLook().getWidth(),
 				0, null);
 	
-	//Player zeichnen
+	//PlayerOne zeichnen
 	g.drawImage(playerOne.getLook(),
 				playerOne.getBounding().x,
 				playerOne.getBounding().y,
 				null);
-	
+	//PlayerOne zeichnen
 	g.drawImage(playerTwo.getLook(),
 			playerTwo.getBounding().x,
 			playerTwo.getBounding().y,

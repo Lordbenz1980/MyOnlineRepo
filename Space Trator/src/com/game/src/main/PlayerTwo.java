@@ -14,9 +14,10 @@ public class PlayerTwo {
 	private int worldsize_x;
 	private int worldsize_y;
 	private BufferedImage look;
+	private int shipSpeed;
 	
 	
-	public PlayerTwo(int x, int y,int worldsize_x,int worldsize_y){
+	public PlayerTwo(int x, int y,int worldsize_x,int worldsize_y,int shipSpeed){
 		
 		try {
 			look = ImageIO.read(getClass().getClassLoader().getResourceAsStream("gfx/ship.png"));
@@ -29,6 +30,7 @@ public class PlayerTwo {
 		f_posy = y;
 		this.worldsize_x = worldsize_x;
 		this.worldsize_y = worldsize_y;
+		this.shipSpeed = shipSpeed;
 	}
 	
 	/**
@@ -41,10 +43,10 @@ public class PlayerTwo {
 	
 	public void update(float timeSinceLastFrame){
 		//Abfrage Player Keyboardtasten und setze geschwindigkeit
-		if(Keyboard.isKeyDown(KeyEvent.VK_UP))f_posy-=600*timeSinceLastFrame;
-		if(Keyboard.isKeyDown(KeyEvent.VK_DOWN))f_posy+=600*timeSinceLastFrame;
-		if(Keyboard.isKeyDown(KeyEvent.VK_RIGHT))f_posx+=600*timeSinceLastFrame;
-		if(Keyboard.isKeyDown(KeyEvent.VK_LEFT))f_posx-=600*timeSinceLastFrame;
+		if(Keyboard.isKeyDown(KeyEvent.VK_UP))f_posy-=shipSpeed*timeSinceLastFrame;
+		if(Keyboard.isKeyDown(KeyEvent.VK_DOWN))f_posy+=shipSpeed*timeSinceLastFrame;
+		if(Keyboard.isKeyDown(KeyEvent.VK_RIGHT))f_posx+=shipSpeed*timeSinceLastFrame;
+		if(Keyboard.isKeyDown(KeyEvent.VK_LEFT))f_posx-=shipSpeed*timeSinceLastFrame;
 		
 		//Abfrage Player Bildschirmrand
 		if(f_posx<0)f_posx=0;
@@ -69,5 +71,15 @@ public class PlayerTwo {
 	public BufferedImage getLook(){
 		return look;
 	}
+
+	public int getShipSpeed() {
+		return shipSpeed;
+	}
+
+	public void setShipSpeed(int shipSpeed) {
+		this.shipSpeed = shipSpeed;
+	}
+	
+	
 }
 

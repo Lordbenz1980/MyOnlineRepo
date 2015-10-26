@@ -5,18 +5,24 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
+import org.lwjgl.input.Controller;
+import org.lwjgl.input.Controllers;
+import org.lwjgl.LWJGLException;
+
+
 import javax.imageio.ImageIO;
 
 public class PlayerOne {
+	
 	private Rectangle bounding;
 	private float f_posx;
 	private float f_posy;
 	private int worldsize_x;
 	private int worldsize_y;
 	private BufferedImage look;
+	private int shipSpeed;
 	
-	
-	public PlayerOne(int x, int y,int worldsize_x,int worldsize_y){
+	public PlayerOne(int x, int y,int worldsize_x,int worldsize_y,int shipSpeed){
 		
 		try {
 			look = ImageIO.read(getClass().getClassLoader().getResourceAsStream("gfx/ship.png"));
@@ -29,7 +35,13 @@ public class PlayerOne {
 		f_posy = y;
 		this.worldsize_x = worldsize_x;
 		this.worldsize_y = worldsize_y;
+		this.shipSpeed = shipSpeed;
+		
+		GamepadOne.init();
 	}
+	
+	
+	
 	
 	/**
 	 * Diese Methode aktualisiert das player objekt
@@ -40,11 +52,20 @@ public class PlayerOne {
 	 */
 	
 	public void update(float timeSinceLastFrame){
+		
+		GamepadOne.controller.poll();
 		//Abfrage Player Keyboardtasten und setze geschwindigkeit
-		if(Keyboard.isKeyDown(KeyEvent.VK_W))f_posy-=600*timeSinceLastFrame;
-		if(Keyboard.isKeyDown(KeyEvent.VK_S))f_posy+=600*timeSinceLastFrame;
-		if(Keyboard.isKeyDown(KeyEvent.VK_D))f_posx+=600*timeSinceLastFrame;
-		if(Keyboard.isKeyDown(KeyEvent.VK_A))f_posx-=600*timeSinceLastFrame;
+		if(Keyboard.isKeyDown(KeyEvent.VK_W))f_posy-=shipSpeed*timeSinceLastFrame;
+		if(Keyboard.isKeyDown(KeyEvent.VK_S))f_posy+=shipSpeed*timeSinceLastFrame;
+		if(Keyboard.isKeyDown(KeyEvent.VK_D))f_posx+=shipSpeed*timeSinceLastFrame;
+		if(Keyboard.isKeyDown(KeyEvent.VK_A))f_posx-=shipSpeed*timeSinceLastFrame;
+		//Gamepad Up and Down
+		if(GamepadOne.controller.getAxisValue(0)<-0.6)f_posy-=shipSpeed*timeSinceLastFrame;
+		if(GamepadOne.controller.getAxisValue(0)>0.6)f_posy+=shipSpeed*timeSinceLastFrame;
+		//Gamepad 
+		if(GamepadOne.controller.getAxisValue(1)<-0.6)f_posx-=shipSpeed*timeSinceLastFrame;
+		if(GamepadOne.controller.getAxisValue(1)>0.6)f_posx+=shipSpeed*timeSinceLastFrame;
+	
 		
 		//Abfrage Player Bildschirmrand
 		if(f_posx<0)f_posx=0;
@@ -68,6 +89,14 @@ public class PlayerOne {
 	
 	public BufferedImage getLook(){
 		return look;
+	}
+
+	public int getShipSpeed() {
+		return shipSpeed;
+	}
+
+	public void setShipSpeed(int shipSpeed) {
+		this.shipSpeed = shipSpeed;
 	}
 }
 
