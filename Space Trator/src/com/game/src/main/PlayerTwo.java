@@ -17,6 +17,7 @@ public class PlayerTwo {
 	private int shipSpeed;
 	
 	
+	
 	public PlayerTwo(int x, int y,int worldsize_x,int worldsize_y,int shipSpeed){
 		
 		try {

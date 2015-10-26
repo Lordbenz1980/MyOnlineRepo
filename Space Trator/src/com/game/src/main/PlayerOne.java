@@ -21,7 +21,7 @@ public class PlayerOne {
 	private float timeSinceLastShot;
 	private float Shotfreqenzy=0.1f;
 	
-	public PlayerOne(int x, int y,int worldsize_x,int worldsize_y,int shipSpeed,java.util.List<Bullet> bullets){
+	public PlayerOne(int x, int y,int worldsize_x,int worldsize_y,int shipSpeed,List<Bullet> bullets){
 		
 		try {
 			look = ImageIO.read(getClass().getClassLoader().getResourceAsStream("gfx/Spaceship.png"));
@@ -68,12 +68,13 @@ public class PlayerOne {
 		}
 		
 		//Gamepad Up and Down
+		if(GamepadOne.flag==true){
 		if(GamepadOne.controller.getAxisValue(0)<-0.6)f_posy-=shipSpeed*timeSinceLastFrame;
 		if(GamepadOne.controller.getAxisValue(0)>0.6)f_posy+=shipSpeed*timeSinceLastFrame;
 		//Gamepad 
 		if(GamepadOne.controller.getAxisValue(1)<-0.6)f_posx-=shipSpeed*timeSinceLastFrame;
 		if(GamepadOne.controller.getAxisValue(1)>0.6)f_posx+=shipSpeed*timeSinceLastFrame;
-	
+		}
 		
 		//Abfrage Player Bildschirmrand
 		if(f_posx<0)f_posx=0;

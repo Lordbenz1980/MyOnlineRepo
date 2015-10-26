@@ -1,5 +1,5 @@
 package com.game.src.main;
-import java.awt.List;
+import java.util.List;
 import java.awt.event.KeyEvent;
 import java.util.LinkedList;
 
@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 
 public class MoveTest {
 	public static void main(String[] args) {
-		java.util.List<Bullet> bullets = new LinkedList<Bullet>();
+		List<Bullet> bullets = new LinkedList<Bullet>();
 		PlayerOne playerOne = new PlayerOne(300,300,Frame.window_width,Frame.window_height,600,bullets);
 		PlayerTwo playerTwo = new PlayerTwo(300,300,Frame.window_width,Frame.window_height,300);
 		
