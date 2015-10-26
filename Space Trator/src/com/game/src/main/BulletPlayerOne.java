@@ -7,14 +7,14 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
-public class Bullet {
+public class BulletPlayerOne {
 	
 	private static BufferedImage look;
-	private List<Bullet>bullets;
+	private List<BulletPlayerOne>bullets;
 	
 	static{
 		try {
-			look = ImageIO.read(Bullet.class.getClassLoader().getResourceAsStream("gfx/schuss.png"));
+			look = ImageIO.read(BulletPlayerOne.class.getClassLoader().getResourceAsStream("gfx/schuss.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -28,7 +28,7 @@ public class Bullet {
 	private float timeAlive;
 	private final float TIMETOLIVE = 10;
 	
-	public Bullet(float x,float y,float speedx,float speedy,List<Bullet>bullets){
+	public BulletPlayerOne(float x,float y,float speedx,float speedy,List<BulletPlayerOne>bullets){
 		this.f_posx = x;
 		this.f_posy = y;
 		this.f_speedx = speedx;

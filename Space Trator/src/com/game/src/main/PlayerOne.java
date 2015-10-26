@@ -17,11 +17,11 @@ public class PlayerOne {
 	private int worldsize_y;
 	private BufferedImage look;
 	private int shipSpeed;
-	private java.util.List<Bullet> bullets;
+	private List<BulletPlayerOne> bullets;
 	private float timeSinceLastShot;
 	private float Shotfreqenzy=0.1f;
 	
-	public PlayerOne(int x, int y,int worldsize_x,int worldsize_y,int shipSpeed,List<Bullet> bullets){
+	public PlayerOne(int x, int y,int worldsize_x,int worldsize_y,int shipSpeed,List<BulletPlayerOne> bullets){
 		
 		try {
 			look = ImageIO.read(getClass().getClassLoader().getResourceAsStream("gfx/Spaceship.png"));
@@ -63,8 +63,8 @@ public class PlayerOne {
 		
 		if(timeSinceLastShot>Shotfreqenzy&&Keyboard.isKeyDown(KeyEvent.VK_SPACE)||timeSinceLastShot>Shotfreqenzy&&GamepadOne.controller.isButtonPressed(1)==true){
 			timeSinceLastShot=0;
-			bullets.add(new Bullet(f_posx+look.getWidth()/2-Bullet.getLook().getWidth()/2,
-								   f_posy+look.getHeight()/2-Bullet.getLook().getHeight()/2,500,0,bullets));
+			bullets.add(new BulletPlayerOne(f_posx+look.getWidth()/2-BulletPlayerOne.getLook().getWidth()/2,
+								   f_posy+look.getHeight()/2-BulletPlayerOne.getLook().getHeight()/2,500,0,bullets));
 		}
 		
 		//Gamepad Up and Down

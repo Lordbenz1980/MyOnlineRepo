@@ -4,6 +4,7 @@ import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
@@ -15,10 +16,12 @@ public class PlayerTwo {
 	private int worldsize_y;
 	private BufferedImage look;
 	private int shipSpeed;
+	private List<BulletPlayerTwo> bullets;
+	private float timeSinceLastShot;
+	private float Shotfreqenzy=1.1f;
 	
 	
-	
-	public PlayerTwo(int x, int y,int worldsize_x,int worldsize_y,int shipSpeed){
+	public PlayerTwo(int x, int y,int worldsize_x,int worldsize_y,int shipSpeed,List<BulletPlayerTwo> bullets){
 		
 		try {
 			look = ImageIO.read(getClass().getClassLoader().getResourceAsStream("gfx/attackship.png"));
@@ -32,6 +35,7 @@ public class PlayerTwo {
 		this.worldsize_x = worldsize_x;
 		this.worldsize_y = worldsize_y;
 		this.shipSpeed = shipSpeed;
+		this.bullets = bullets;
 	}
 	
 	/**
@@ -48,6 +52,13 @@ public class PlayerTwo {
 		if(Keyboard.isKeyDown(KeyEvent.VK_DOWN))f_posy+=shipSpeed*timeSinceLastFrame;
 		if(Keyboard.isKeyDown(KeyEvent.VK_RIGHT))f_posx+=shipSpeed*timeSinceLastFrame;
 		if(Keyboard.isKeyDown(KeyEvent.VK_LEFT))f_posx-=shipSpeed*timeSinceLastFrame;
+		
+		if(Keyboard.isKeyDown(KeyEvent.VK_SPACE)){
+			timeSinceLastShot=0;
+			bullets.add(new BulletPlayerTwo(f_posx+look.getWidth()/2-BulletPlayerTwo.getLook().getWidth()/2,
+								   f_posy+look.getHeight()/2-BulletPlayerTwo.getLook().getHeight()/2,500,0,bullets));
+		}
+		
 		
 		//Abfrage Player Bildschirmrand
 		if(f_posx<0)f_posx=0;
