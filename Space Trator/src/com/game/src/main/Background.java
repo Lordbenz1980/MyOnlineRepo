@@ -10,20 +10,22 @@ public class Background {
 	private float f_speed;
 	private BufferedImage look;
 	
+	
 	public Background(float f_speed){
-		this.f_speed = f_speed;
-		
+		this.f_speed = f_speed;	
 		try {
 			look = ImageIO.read(getClass().getClassLoader().getResourceAsStream("gfx/weltraum.png"));
-		} catch (IOException e) {
+			
+			} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	public void update(float timeSinceLastFrame){
 		f_posx-=f_speed*timeSinceLastFrame;	
-		
-		//neu zeichnen der Weltraums 
-		if(f_posx<-look.getWidth())f_posx+=look.getWidth();
+		//nach weltraumdurchlauf neu zeichenn des weltraums 
+		if(f_posx<-look.getWidth()){
+			f_posx+=look.getWidth();
+		}
 	}
 	
 	public int getX(){
@@ -33,4 +35,12 @@ public class Background {
 	public BufferedImage getLook(){
 		return look;
 	}
+
+	public float getF_speed() {
+		return f_speed;
+	}
+	public void setF_speed(float f_speed) {
+		this.f_speed = f_speed;
+	}
 }
+

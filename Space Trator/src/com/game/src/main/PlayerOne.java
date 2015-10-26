@@ -1,12 +1,13 @@
 package com.game.src.main;
 
 import java.awt.Rectangle;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class Player {
+public class PlayerOne {
 	private Rectangle bounding;
 	private float f_posx;
 	private float f_posy;
@@ -15,7 +16,7 @@ public class Player {
 	private BufferedImage look;
 	
 	
-	public Player(int x, int y,int worldsize_x,int worldsize_y){
+	public PlayerOne(int x, int y,int worldsize_x,int worldsize_y){
 		
 		try {
 			look = ImageIO.read(getClass().getClassLoader().getResourceAsStream("gfx/ship.png"));
@@ -38,12 +39,12 @@ public class Player {
 	 * @param right Playwe goes right
 	 */
 	
-	public void update(float timeSinceLastFrame,boolean up, boolean down, boolean left, boolean right){
+	public void update(float timeSinceLastFrame){
 		//Abfrage Player Keyboardtasten und setze geschwindigkeit
-		if(up)f_posy-=600*timeSinceLastFrame;
-		if(down)f_posy+=600*timeSinceLastFrame;
-		if(right)f_posx+=600*timeSinceLastFrame;
-		if(left)f_posx-=600*timeSinceLastFrame;
+		if(Keyboard.isKeyDown(KeyEvent.VK_W))f_posy-=600*timeSinceLastFrame;
+		if(Keyboard.isKeyDown(KeyEvent.VK_S))f_posy+=600*timeSinceLastFrame;
+		if(Keyboard.isKeyDown(KeyEvent.VK_D))f_posx+=600*timeSinceLastFrame;
+		if(Keyboard.isKeyDown(KeyEvent.VK_A))f_posx-=600*timeSinceLastFrame;
 		
 		//Abfrage Player Bildschirmrand
 		if(f_posx<0)f_posx=0;
