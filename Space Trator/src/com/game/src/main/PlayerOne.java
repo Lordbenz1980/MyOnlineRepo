@@ -4,12 +4,6 @@ import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-
-import org.lwjgl.input.Controller;
-import org.lwjgl.input.Controllers;
-import org.lwjgl.LWJGLException;
-
-
 import javax.imageio.ImageIO;
 
 public class PlayerOne {
@@ -25,7 +19,7 @@ public class PlayerOne {
 	public PlayerOne(int x, int y,int worldsize_x,int worldsize_y,int shipSpeed){
 		
 		try {
-			look = ImageIO.read(getClass().getClassLoader().getResourceAsStream("gfx/ship.png"));
+			look = ImageIO.read(getClass().getClassLoader().getResourceAsStream("gfx/Spaceship.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -59,6 +53,7 @@ public class PlayerOne {
 		if(Keyboard.isKeyDown(KeyEvent.VK_S))f_posy+=shipSpeed*timeSinceLastFrame;
 		if(Keyboard.isKeyDown(KeyEvent.VK_D))f_posx+=shipSpeed*timeSinceLastFrame;
 		if(Keyboard.isKeyDown(KeyEvent.VK_A))f_posx-=shipSpeed*timeSinceLastFrame;
+		
 		//Gamepad Up and Down
 		if(GamepadOne.controller.getAxisValue(0)<-0.6)f_posy-=shipSpeed*timeSinceLastFrame;
 		if(GamepadOne.controller.getAxisValue(0)>0.6)f_posy+=shipSpeed*timeSinceLastFrame;

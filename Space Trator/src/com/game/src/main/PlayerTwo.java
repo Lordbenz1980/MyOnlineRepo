@@ -20,7 +20,7 @@ public class PlayerTwo {
 	public PlayerTwo(int x, int y,int worldsize_x,int worldsize_y,int shipSpeed){
 		
 		try {
-			look = ImageIO.read(getClass().getClassLoader().getResourceAsStream("gfx/ship.png"));
+			look = ImageIO.read(getClass().getClassLoader().getResourceAsStream("gfx/attackship.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
