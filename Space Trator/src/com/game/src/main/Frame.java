@@ -15,14 +15,16 @@ public class Frame extends JFrame{
 	final public static int window_height = 600;
 	
 	private BufferStrategy strat;
+	private java.util.List<Bullet> bullets;
 	
 	
-	public Frame(PlayerOne playerOne,PlayerTwo playerTwo,Background bg){
+	public Frame(PlayerOne playerOne,PlayerTwo playerTwo,Background bg,java.util.List<Bullet> bullets){
 		super("Space Trator");
 		addKeyListener(new Keyboard());
 		this.playerOne = playerOne;
 		this.playerTwo = playerTwo;
 		this.bg =  bg;
+		this.bullets = bullets;
 			
 	}
 	
@@ -54,6 +56,12 @@ public class Frame extends JFrame{
 				playerOne.getBounding().x,
 				playerOne.getBounding().y,
 				null);
+	
+	for(int i =0;i<bullets.size();i++){
+		Bullet b = bullets.get(i);
+		g.drawImage(Bullet.getLook(),b.getBounding().x,b.getBounding().y,null);
+	}
+	
 	//PlayerOne zeichnen
 	g.drawImage(playerTwo.getLook(),
 			playerTwo.getBounding().x,

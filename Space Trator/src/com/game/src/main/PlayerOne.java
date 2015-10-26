@@ -4,6 +4,8 @@ import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.List;
+
 import javax.imageio.ImageIO;
 
 public class PlayerOne {
@@ -15,8 +17,11 @@ public class PlayerOne {
 	private int worldsize_y;
 	private BufferedImage look;
 	private int shipSpeed;
+	private java.util.List<Bullet> bullets;
+	private float timeSinceLastShot;
+	private float Shotfreqenzy=0.1f;
 	
-	public PlayerOne(int x, int y,int worldsize_x,int worldsize_y,int shipSpeed){
+	public PlayerOne(int x, int y,int worldsize_x,int worldsize_y,int shipSpeed,java.util.List<Bullet> bullets){
 		
 		try {
 			look = ImageIO.read(getClass().getClassLoader().getResourceAsStream("gfx/Spaceship.png"));
@@ -30,6 +35,8 @@ public class PlayerOne {
 		this.worldsize_x = worldsize_x;
 		this.worldsize_y = worldsize_y;
 		this.shipSpeed = shipSpeed;
+		this.bullets = bullets;
+		
 		
 		GamepadOne.init();
 	}
@@ -46,13 +53,19 @@ public class PlayerOne {
 	 */
 	
 	public void update(float timeSinceLastFrame){
-		
+		timeSinceLastShot+=timeSinceLastFrame;
 		GamepadOne.controller.poll();
 		//Abfrage Player Keyboardtasten und setze geschwindigkeit
 		if(Keyboard.isKeyDown(KeyEvent.VK_W))f_posy-=shipSpeed*timeSinceLastFrame;
 		if(Keyboard.isKeyDown(KeyEvent.VK_S))f_posy+=shipSpeed*timeSinceLastFrame;
 		if(Keyboard.isKeyDown(KeyEvent.VK_D))f_posx+=shipSpeed*timeSinceLastFrame;
 		if(Keyboard.isKeyDown(KeyEvent.VK_A))f_posx-=shipSpeed*timeSinceLastFrame;
+		
+		if(timeSinceLastShot>Shotfreqenzy&&Keyboard.isKeyDown(KeyEvent.VK_SPACE)||timeSinceLastShot>Shotfreqenzy&&GamepadOne.controller.isButtonPressed(1)==true){
+			timeSinceLastShot=0;
+			bullets.add(new Bullet(f_posx+look.getWidth()/2-Bullet.getLook().getWidth()/2,
+								   f_posy+look.getHeight()/2-Bullet.getLook().getHeight()/2,500,0,bullets));
+		}
 		
 		//Gamepad Up and Down
 		if(GamepadOne.controller.getAxisValue(0)<-0.6)f_posy-=shipSpeed*timeSinceLastFrame;
