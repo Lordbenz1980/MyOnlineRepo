@@ -17,9 +17,6 @@ public class PlayerTwo {
 	private BufferedImage look;
 	private int shipSpeed;
 	private List<BulletPlayerTwo> bullets;
-	private float timeSinceLastShot;
-	private float Shotfreqenzy=1.1f;
-	
 	
 	public PlayerTwo(int x, int y,int worldsize_x,int worldsize_y,int shipSpeed,List<BulletPlayerTwo> bullets){
 		
@@ -54,7 +51,6 @@ public class PlayerTwo {
 		if(Keyboard.isKeyDown(KeyEvent.VK_LEFT))f_posx-=shipSpeed*timeSinceLastFrame;
 		
 		if(Keyboard.isKeyDown(KeyEvent.VK_SPACE)){
-			timeSinceLastShot=0;
 			bullets.add(new BulletPlayerTwo(f_posx+look.getWidth()/2-BulletPlayerTwo.getLook().getWidth()/2,
 								   f_posy+look.getHeight()/2-BulletPlayerTwo.getLook().getHeight()/2,500,0,bullets));
 		}
