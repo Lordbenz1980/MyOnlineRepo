@@ -13,44 +13,56 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.paint.Color?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.baines.calculator.Controller">
+<AnchorPane prefHeight="507.0" prefWidth="279.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.baines.calculator.Controller">
+   
+   
    <children>
-      <AnchorPane maxHeight="550.0" maxWidth="500.0" minHeight="500.0" minWidth="500.0" prefHeight="550.0" prefWidth="500.0">
-         <children>
-            <HBox layoutX="27.0" layoutY="85.0" spacing="33.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <AnchorPane layoutX="6.0" layoutY="5.0" maxHeight="550.0" maxWidth="533.0" minHeight="312.0" minWidth="267.0" prefHeight="497.0" prefWidth="267.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0">
+      	 <children>
+            <HBox layoutX="4.0" layoutY="181.0" prefHeight="50.0" prefWidth="262.0" spacing="10.0" AnchorPane.leftAnchor="4.0" AnchorPane.rightAnchor="1.0">
                <children>
-                  <Button layoutX="27.0" layoutY="85.0" mnemonicParsing="false" onAction="#processNumpad" prefHeight="92.0" prefWidth="98.0" text="7" />
-                  <Button layoutX="138.0" layoutY="85.0" mnemonicParsing="false" onAction="#processNumpad" prefHeight="92.0" prefWidth="98.0" text="8" />
-                  <Button layoutX="250.0" layoutY="85.0" mnemonicParsing="false" onAction="#processNumpad" prefHeight="92.0" prefWidth="98.0" text="9" />
-                  <Button layoutX="361.0" layoutY="85.0" mnemonicParsing="false" onAction="#processOperator" prefHeight="92.0" prefWidth="107.0" text="/" />
+                  <Button layoutX="27.0" layoutY="85.0" mnemonicParsing="false" onAction="#processNumpad" prefHeight="51.0" prefWidth="58.0" text="7" />
+                  <Button layoutX="138.0" layoutY="85.0" mnemonicParsing="false" onAction="#processNumpad" prefHeight="51.0" prefWidth="58.0" text="8" />
+                  <Button layoutX="250.0" layoutY="85.0" mnemonicParsing="false" onAction="#processNumpad" prefHeight="51.0" prefWidth="58.0" text="9" />
+                  <Button layoutX="361.0" layoutY="85.0" mnemonicParsing="false" onAction="#processOperator" prefHeight="50.0" prefWidth="56.0" text="/" />
                </children>
             </HBox>
-            <HBox layoutY="188.0" spacing="33.0">
+            <HBox layoutX="4.0" layoutY="240.0" spacing="10.0">
                <children>
-                  <Button layoutX="27.0" layoutY="85.0" mnemonicParsing="false" onAction="#processNumpad" prefHeight="92.0" prefWidth="98.0" text="4" />
-                  <Button layoutX="138.0" layoutY="85.0" mnemonicParsing="false" onAction="#processNumpad" prefHeight="92.0" prefWidth="98.0" text="5" />
-                  <Button layoutX="250.0" layoutY="85.0" mnemonicParsing="false" onAction="#processNumpad" prefHeight="92.0" prefWidth="98.0" text="6" />
-                  <Button layoutX="361.0" layoutY="85.0" mnemonicParsing="false" onAction="#processOperator" prefHeight="92.0" prefWidth="107.0" text="*" />
+                  <Button layoutX="27.0" layoutY="85.0" mnemonicParsing="false" onAction="#processNumpad" prefHeight="51.0" prefWidth="58.0" text="4" />
+                  <Button layoutX="138.0" layoutY="85.0" mnemonicParsing="false" onAction="#processNumpad" prefHeight="51.0" prefWidth="58.0" text="5" />
+                  <Button layoutX="250.0" layoutY="85.0" mnemonicParsing="false" onAction="#processNumpad" prefHeight="51.0" prefWidth="58.0" text="6" />
+                  <Button layoutX="361.0" layoutY="85.0" mnemonicParsing="false" onAction="#processOperator" prefHeight="51.0" prefWidth="58.0" text="*" />
                </children>
             </HBox>
-            <HBox layoutY="294.0" spacing="33.0">
+            <HBox layoutX="4.0" layoutY="301.0" prefHeight="53.0" prefWidth="268.0" spacing="10.0">
                <children>
-                  <Button layoutX="27.0" layoutY="85.0" mnemonicParsing="false" onAction="#processNumpad" prefHeight="92.0" prefWidth="98.0" text="1" />
-                  <Button layoutX="138.0" layoutY="85.0" mnemonicParsing="false" onAction="#processNumpad" prefHeight="92.0" prefWidth="98.0" text="2" />
-                  <Button layoutX="250.0" layoutY="85.0" mnemonicParsing="false" onAction="#processNumpad" prefHeight="92.0" prefWidth="98.0" text="3" />
-                  <Button layoutX="361.0" layoutY="85.0" mnemonicParsing="false" onAction="#processOperator" prefHeight="92.0" prefWidth="107.0" text="-" />
+                  <Button fx:id="button1" layoutX="27.0" layoutY="85.0" mnemonicParsing="false" onAction="#processNumpad" prefHeight="51.0" prefWidth="58.0" text="1" />
+                  <Button layoutX="138.0" layoutY="85.0" mnemonicParsing="false" onAction="#processNumpad" prefHeight="51.0" prefWidth="58.0" text="2" />
+                  <Button layoutX="250.0" layoutY="85.0" mnemonicParsing="false" onAction="#processNumpad" prefHeight="51.0" prefWidth="58.0" text="3" />
+                  <Button layoutX="361.0" layoutY="85.0" mnemonicParsing="false" onAction="#processOperator" prefHeight="51.0" prefWidth="58.0" text="-" />
                </children>
             </HBox>
-            <HBox layoutY="405.0" spacing="33.0">
+            <HBox layoutX="4.0" layoutY="360.0" prefHeight="61.0" prefWidth="262.0" spacing="10.0">
                <children>
-                  <Button layoutX="27.0" layoutY="85.0" mnemonicParsing="false" onAction="#processNumpad" prefHeight="92.0" prefWidth="234.0" text="0" />
-                  <Button layoutX="394.0" layoutY="405.0" mnemonicParsing="false" onAction="#processOperator" prefHeight="92.0" prefWidth="107.0" text="+" />
-         		   <Button layoutX="263.0" layoutY="405.0" mnemonicParsing="false" onAction="#processOperator" prefHeight="92.0" prefWidth="89.0" text="=" />	
+                  <Button layoutX="27.0" layoutY="85.0" mnemonicParsing="false" onAction="#processNumpad" prefHeight="51.0" prefWidth="58.0" text="0" />
+                  <Button layoutX="330.0" layoutY="405.0" mnemonicParsing="false" onAction="#processOperator" prefHeight="51.0" prefWidth="58.0" text="+" />
+         		   <Button layoutX="263.0" layoutY="405.0" mnemonicParsing="false" onAction="#processOperator" prefHeight="51.0" prefWidth="61.0" text="=" />
+                  <Button mnemonicParsing="false" onAction="#processNumpad" prefHeight="51.0" prefWidth="58.0" text="." />	
                </children>
             </HBox>
+            <HBox layoutX="-3.0" prefHeight="67.0" prefWidth="262.0" spacing="20.0" AnchorPane.bottomAnchor="430.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <TextField fx:id="output" prefHeight="77.0" prefWidth="285.0">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <Button layoutX="209.0" layoutY="123.0" mnemonicParsing="false" onAction="#processClear" prefHeight="51.0" prefWidth="58.0" text="Clear" />
+            <Button layoutX="138.0" layoutY="123.0" mnemonicParsing="false" onAction="#processOperator" prefHeight="51.0" prefWidth="58.0" text="\%" />
          </children>
       </AnchorPane>
-      <HBox prefHeight="76.0" prefWidth="500.0" spacing="20.0" AnchorPane.leftAnchor="0.0" />
-      <TextField fx:id="output" prefHeight="76.0" prefWidth="500.0" />
    </children>
 </AnchorPane>

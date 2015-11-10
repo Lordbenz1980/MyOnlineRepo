@@ -2,7 +2,7 @@ package com.baines.calculator;
 
 public class Model {
 	
-	public long calculate(long number1,long number2,String operator){
+	public double calculate(Double number1,Double number2,String operator){
 		
 		switch (operator){
 		case "+":
@@ -21,6 +21,10 @@ public class Model {
 		System.out.println("Unknown Operator - "+ operator);
 		return 0;
 		
+	}
+	
+	public double calculateProzent(Double number1){
+		return number1/100;
 	}
 
 }
